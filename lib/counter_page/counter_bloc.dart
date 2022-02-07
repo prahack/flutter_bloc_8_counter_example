@@ -19,5 +19,10 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
         emit(CounterState(counter: state.counter - 1));
       }
     });
+    on<JumpToEvent>(jumpToEventMethod);
+  }
+
+  void jumpToEventMethod(JumpToEvent event, Emitter emit) {
+    emit(CounterState(counter: event.num));
   }
 }

@@ -37,6 +37,11 @@ class CounterView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            onPressed: () => counterBloc.add(JumpToEvent(0)),
+            tooltip: 'JumpToZero',
+            child: const Icon(Icons.undo_sharp),
+          ),
+          FloatingActionButton(
             onPressed: () => counterBloc.add(DecrementEvent()),
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),

@@ -29,15 +29,16 @@ class CounterView extends StatelessWidget {
                     '${state.counter}',
                     style: Theme.of(context).textTheme.headline4,
                   );
-                })
+                }),
           ],
         ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          // use of context.read
           FloatingActionButton(
-            onPressed: () => counterBloc.add(JumpToEvent(0)),
+            onPressed: () => context.read<CounterBloc>().add(JumpToEvent(0)),
             tooltip: 'JumpToZero',
             child: const Icon(Icons.undo_sharp),
           ),

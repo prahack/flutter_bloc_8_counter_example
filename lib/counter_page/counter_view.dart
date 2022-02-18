@@ -19,6 +19,14 @@ class CounterView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // use of context.select
+            Builder(
+              builder: (context) {
+                final text =
+                    context.select((CounterBloc bloc) => bloc.state.text);
+                return Text(text);
+              },
+            ),
             const Text(
               '-10 to 10 counter current state value:',
             ),

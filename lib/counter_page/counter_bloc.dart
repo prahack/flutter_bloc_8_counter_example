@@ -7,22 +7,22 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc(BuildContext buildContext) : super(CounterState.initialState) {
     on<IncrementEvent>((event, emit) {
       if (state.counter == 10) {
-        emit(const CounterState(counter: 0));
+        emit(state.clone(counter: 0, text: 'Jump to ZERO from 10'));
       } else {
-        emit(CounterState(counter: state.counter + 1));
+        emit(state.clone(counter: state.counter + 1));
       }
     });
     on<DecrementEvent>((event, emit) {
       if (state.counter == -10) {
-        emit(const CounterState(counter: 0));
+        emit(state.clone(counter: 0, text: 'Jump to ZERO from -10'));
       } else {
-        emit(CounterState(counter: state.counter - 1));
+        emit(state.clone(counter: state.counter - 1));
       }
     });
     on<JumpToEvent>(jumpToEventMethod);
   }
 
   void jumpToEventMethod(JumpToEvent event, Emitter emit) {
-    emit(CounterState(counter: event.num));
+    emit(state.clone(counter: event.num));
   }
 }

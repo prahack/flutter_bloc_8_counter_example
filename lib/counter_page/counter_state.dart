@@ -10,8 +10,10 @@ class CounterState {
     required this.text,
   });
 
-  static CounterState get initialState =>
-      const CounterState(counter: 0, text: 'bloc 8');
+  static CounterState get initialState => const CounterState(
+        counter: 0,
+        text: 'bloc 8',
+      );
 
   CounterState clone({
     int? counter,
@@ -22,4 +24,15 @@ class CounterState {
       text: text ?? this.text,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CounterState &&
+          runtimeType == other.runtimeType &&
+          counter == other.counter &&
+          text == other.text;
+
+  @override
+  int get hashCode => counter.hashCode ^ text.hashCode;
 }

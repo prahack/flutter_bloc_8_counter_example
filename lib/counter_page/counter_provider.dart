@@ -7,7 +7,8 @@ class CounterProvider extends BlocProvider<CounterBloc> {
   CounterProvider({
     Key? key,
   }) : super(
-            key: key,
-            create: (context) => CounterBloc(context),
-            child: const CounterView());
+          key: key,
+          create: (context) => CounterBloc(),
+          child: const CounterView(),
+        );
 }

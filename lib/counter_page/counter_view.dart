@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bloc/counter_page/counter_bloc.dart';
 import 'package:new_bloc/counter_page/counter_event.dart';
 import 'package:new_bloc/counter_page/counter_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:new_bloc/localization_bloc/localization_bloc.dart';
+import 'package:new_bloc/localization_bloc/localization_event.dart';
 
 class CounterView extends StatelessWidget {
   const CounterView({Key? key}) : super(key: key);
@@ -13,7 +16,8 @@ class CounterView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter View'),
+        title: Text(AppLocalizations.of(context)!.helloWorld),
+        //const Text('Counter View'),
       ),
       body: Center(
         child: Column(
@@ -35,7 +39,7 @@ class CounterView extends StatelessWidget {
                 builder: (context, state) {
                   return Text(
                     '${state.counter}',
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   );
                 }),
           ],
@@ -45,6 +49,11 @@ class CounterView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // use of context.read
+          FloatingActionButton(
+            onPressed: () =>
+                context.read<LocalizationBloc>().add(ChangeLocaleEvent()),
+            child: const Icon(Icons.change_circle),
+          ),
           FloatingActionButton(
             onPressed: () => context.read<CounterBloc>().add(JumpToEvent(0)),
             tooltip: 'JumpToZero',

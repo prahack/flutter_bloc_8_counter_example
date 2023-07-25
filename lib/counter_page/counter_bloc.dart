@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:new_bloc/counter_page/counter_event.dart';
 import 'package:new_bloc/counter_page/counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc(BuildContext buildContext) : super(CounterState.initialState) {
+  CounterBloc() : super(CounterState.initialState) {
     on<IncrementEvent>((event, emit) {
       if (state.counter == 10) {
         emit(state.clone(counter: 0, text: 'Jump to ZERO from 10'));
